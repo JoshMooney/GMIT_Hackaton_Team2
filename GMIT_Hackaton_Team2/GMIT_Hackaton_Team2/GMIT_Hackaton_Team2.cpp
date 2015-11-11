@@ -5,6 +5,7 @@
 using namespace std;
 #include <iostream>
 #include "Renderer.h"
+#include "Platform.h"
 #include "InputManager.h"
 
 /*
@@ -28,16 +29,26 @@ int main(){
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
+
+	b2World* m_world;
+	m_world = new b2World(GRAVITY);
+
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
+	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 
 	InputManager im;
 
 	bool is_running = true;
 	while (is_running){
 		//Main Game loop here
+		m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
+
 		im.update();
 		renderer.Begin();
+		//Draw in here
+		main_platform.render(renderer);
+
 
 		//if () {}
 
@@ -46,3 +57,4 @@ int main(){
 
 	return EXIT_SUCCESS;
 }
+

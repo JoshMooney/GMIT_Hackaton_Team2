@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>.\SDL\include;.\Box2D;$(IncludePath)</IncludePath>
     <LibraryPath>.\SDL\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>./Box2D/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>./Box2D;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;Box2D.lib;SDL2_mixer.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -86,6 +86,12 @@
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Base_Unit.hpp" />
+    <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Heavy_Unit.hpp" />
+    <ClInclude Include="Light_Unit.hpp" />
+    <ClInclude Include="Med_Unit.hpp" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
