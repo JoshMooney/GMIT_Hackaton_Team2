@@ -2,11 +2,12 @@
 
 #include <SDL.h>
 #undef main 
-#include "Box2D\Box2D.h"
+#include "Box2D\Box2D\Box2D.h"
+
 using namespace std;
 #include <iostream>
 #include "Renderer.h"
-
+#include "Tower.h"
 
 int main(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -22,12 +23,37 @@ int main(){
 	const int pos_iterations = 2;
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	b2World world(GRAVITY);
+	Tower tower = Tower(&world, renderer.getRender(), 100, 100);
 	bool is_running = true;
 	while (is_running){
+		SDL_Event e;
 		//Main Game loop here
-		renderer.Begin();
+		while (SDL_PollEvent(&e) != 0)
+		{
 
+			//User requests quit
+			if (e.type == SDL_QUIT) //user presses close button on window
+			{
+				is_running = false;
+			}
+			//User presses a key
+			else if (e.type == SDL_KEYDOWN)
+			{
+				switch (e.key.keysym.sym)
+				{
+				case SDLK_ESCAPE:
+					is_running = false;
+					break;
+				default:
+					break;
+				}
+
+
+			}
+		}
+		renderer.Begin();
+		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
 		renderer.End();
 	}
 
