@@ -39,8 +39,6 @@ int main(){
 		im.update();
 		renderer.Begin();
 
-		//if () {}
-
 		renderer.End();
 	}
 
