@@ -7,6 +7,14 @@ using namespace std;
 #include "Renderer.h"
 #include "InputManager.h"
 
+/*
+Notes:
+How to use ResourceManager:
+
+ResourceManager<DataTypeHere>::instance()->("Path");
+eg.
+ResourceManager<sf::Texture>::instance()->("Assets/Stuff/file.png")
+*/
 
 int main(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){

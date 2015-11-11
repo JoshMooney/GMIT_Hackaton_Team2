@@ -27,8 +27,9 @@
     <ClInclude Include="Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files</Filter>
+  <ClInclude Include="InputManager.h">
+ <ClInclude Include="ResourceManager.hpp">
+    <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
