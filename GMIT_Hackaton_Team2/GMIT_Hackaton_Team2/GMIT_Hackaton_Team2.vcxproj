@@ -84,6 +84,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base_Unit.hpp" />
+    <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Heavy_Unit.hpp" />
+    <ClInclude Include="Light_Unit.hpp" />
+    <ClInclude Include="Med_Unit.hpp" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="stdafx.h" />
