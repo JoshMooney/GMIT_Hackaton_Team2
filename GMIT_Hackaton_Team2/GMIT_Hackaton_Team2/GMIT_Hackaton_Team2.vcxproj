@@ -90,12 +90,13 @@
     <ClInclude Include="Light_Unit.hpp" />
     <ClInclude Include="Med_Unit.hpp" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="stdafx.cpp">
