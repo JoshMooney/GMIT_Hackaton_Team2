@@ -1,12 +1,20 @@
 #include "stdafx.h"
-
 #include <SDL.h>
 #undef main 
 #include "Box2D\Box2D.h"
 using namespace std;
 #include <iostream>
 #include "Renderer.h"
+#include "InputManager.h"
 
+/*
+Notes:
+How to use ResourceManager:
+
+ResourceManager<DataTypeHere>::instance()->("Path");
+eg.
+ResourceManager<sf::Texture>::instance()->("Assets/Stuff/file.png")
+*/
 
 int main(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -23,14 +31,18 @@ int main(){
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+	InputManager im;
+
 	bool is_running = true;
 	while (is_running){
 		//Main Game loop here
+		im.update();
 		renderer.Begin();
+
+		//if () {}
 
 		renderer.End();
 	}
 
 	return EXIT_SUCCESS;
 }
-

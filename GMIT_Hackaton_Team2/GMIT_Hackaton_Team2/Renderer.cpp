@@ -15,7 +15,6 @@ Renderer::Renderer(int windowWidth, int windowHeight){
 	{
 		SDL_DestroyWindow(win);
 	}
-	
 
 	//Create renderer
 	ren = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED);
