@@ -68,10 +68,12 @@ int main(){
 	temp = { 800, 130, 150, 50 };
 	b6.Init(temp, renderer.getRender(), "redenemy3.png");
 
-	//unit_manager.addUnit("Heavy", true, m_world, renderer);
+//unit_manager.addUnit("Heavy", true, m_world, renderer);
 	//unit_manager.addUnit("Heavy", false, m_world, renderer);
 	
-
+	unit_manager.addUnit("Heavy", true, m_world, renderer);
+	unit_manager.addUnit("Med", false, m_world, renderer);
+	unit_manager.addUnit("Light", true, m_world, renderer);
 	bool is_running = true;
 	while (is_running){
 		//Main Game loop here

@@ -6,11 +6,13 @@
 
 class Light_Unit : public Base_Unit{
 private:
-
+	int IdleTimer;
+	int returnIdle;
 public:
 	Light_Unit();
 	Light_Unit(b2Vec2 pos, int w, int h, bool dir, b2World* wrd, Renderer &r) {
 		m_texture = loadTexture("Assets/light.png", r.getRender());
+		m_active = true;
 		//Define a b2body
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
@@ -32,19 +34,43 @@ public:
 		m_attack = 10;
 		m_health = 10;
 		m_speed = .3f;
+
 		m_is_moving = false;
 		m_is_fighting = false;
 		m_direction = dir;
+		initAnimation();
+
+		frame = 0;
+		frameDelay = 50;
+		IdleTimer = 50;
+		returnIdle = 0;
+		frameCountdown = 0;
 	}
 	~Light_Unit();
 
 	void update(){
+		//Go to next frame
+		if (++frameCountdown > frameDelay) {
+			frame++;
+			frameCountdown = 0;
+		}
+
+		//Cycle animation
+		//if (frame / 3 >= WALKING_ANIMATION_FRAMES){
+		if (frame >= WALKING_ANIMATION_FRAMES) {
+			frame = 0;
+		}
 		move();
 		correctGeometry();
 	}
 	void render(Renderer& r){
 		//SDL_RenderCopy(r.getRender(), m_texture, NULL, &m_geometry);
-		r.DrawImage(sizeRec, &m_geometry, m_texture);
+		//r.DrawImage(sizeRec, &m_geometry, m_texture);
+		if (m_direction)
+			currentClip = &right_Clips[frame];
+		else
+			currentClip = &left_Clips[frame];
+		SDL_RenderCopy(r.getRender(), m_texture, currentClip, &m_geometry);
 	}
 	void onBeginContact(CollisionResponder* other){
 
