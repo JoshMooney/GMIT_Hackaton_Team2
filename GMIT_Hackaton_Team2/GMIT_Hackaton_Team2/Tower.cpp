@@ -47,3 +47,11 @@ void Tower::Update()
 	spriteRect.x = body->GetPosition().x;
 	spriteRect.y = body->GetPosition().y + spriteRect.h;
 }
+
+void Tower::onBeginContact(CollisionResponder* other) {
+
+}
+
+void Tower::onEndContact(CollisionResponder* other) {
+
+}

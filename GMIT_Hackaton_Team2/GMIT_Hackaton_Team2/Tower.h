@@ -4,9 +4,9 @@
 
 #include <SDL.h>
 #include "Box2D\Box2D\Box2D.h"
+#include "CollisionResponder.h"
 
-
-class Tower
+class Tower : public CollisionResponder
 {
 public:
 	Tower();
@@ -20,7 +20,8 @@ public:
 	SDL_Rect getSourceRect() { return sourceRect; }
 	SDL_Texture* getTexture() { return texture; }
 	int getHealth() { return m_health;}
-	
+	void onEndContact(CollisionResponder* other);
+	void onBeginContact(CollisionResponder* other);
 protected:
 	SDL_Surface *sprite;
 	b2FixtureDef fixdef;

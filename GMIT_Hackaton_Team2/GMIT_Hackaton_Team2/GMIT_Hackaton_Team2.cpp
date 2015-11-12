@@ -12,6 +12,7 @@ using namespace std;
 #include "InputManager.h"
 #include "Unit_Manager.hpp"
 #include "Tower.h"
+#include "MyContactListener.h"
 
 /*
 Notes:
@@ -34,10 +35,10 @@ int main(){
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
-
+	MyContactListener myContact;
 	b2World* m_world;
 	m_world = new b2World(GRAVITY);
-
+	m_world->SetContactListener(&myContact);
 	Unit_Manager unit_manager = Unit_Manager();
 	
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };

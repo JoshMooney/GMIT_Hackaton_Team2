@@ -23,6 +23,7 @@
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="Unit_Manager.hpp" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="MyContactListener.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

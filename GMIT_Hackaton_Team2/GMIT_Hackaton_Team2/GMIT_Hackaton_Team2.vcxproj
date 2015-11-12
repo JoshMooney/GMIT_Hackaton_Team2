@@ -92,6 +92,7 @@
     <ClInclude Include="Heavy_Unit.hpp" />
     <ClInclude Include="Light_Unit.hpp" />
     <ClInclude Include="Med_Unit.hpp" />
+    <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="stdafx.h" />

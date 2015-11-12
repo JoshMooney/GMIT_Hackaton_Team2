@@ -36,7 +36,7 @@ public:
 		m_is_fighting = false;
 		m_direction = dir;
 	}
-	~Light_Unit();
+	~Light_Unit(){}
 
 	void update(){
 		move();

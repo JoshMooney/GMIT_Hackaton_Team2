@@ -37,7 +37,7 @@ public:
 		m_direction = dir;
 		
 	}
-	~Med_Unit();
+	~Med_Unit(){}
 
 	void update(){
 		move();

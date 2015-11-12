@@ -69,7 +69,14 @@ public:
 		r.DrawImage(sizeRec, &m_geometry, m_texture);
 	}
 	void onBeginContact(CollisionResponder* other){
+		Base_Unit* enemy = static_cast<Base_Unit*>(other);
 
+		if (enemy != NULL) {
+			damage(enemy->m_attack);
+		}
+		if (m_direction) {
+			m_box_body->ApplyForceToCenter(b2Vec2(-30, 0), false);
+		}
 	}
 	void onEndContact(CollisionResponder* other){
 
