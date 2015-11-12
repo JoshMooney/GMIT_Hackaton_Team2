@@ -11,6 +11,18 @@ class Base_Unit {
 private:
 	const float box2D_timestep = 1.0f / 60.0f;
 public:
+	int    CurrentFrame;
+	int     frame;
+	int     FrameRate; //Milliseconds
+	long    OldTime;
+	int    MaxFrames;
+	float frameDelay;
+	SDL_Rect* currentClip;
+	int frameCountdown;
+	const int WALKING_ANIMATION_FRAMES = 3;
+	SDL_Rect right_Clips[3];
+	SDL_Rect left_Clips[3];
+
 	//Not ment to go here but for quick development purposes sure why not.
 	bool m_active;
 	int m_attack;
@@ -30,7 +42,6 @@ public:
 	SDL_Texture* m_texture;
 	//Load image at specified path
 	SDL_Surface* loadedSurface;
-	SDL_Rect* currentClip;
 	SDL_Rect* sizeRec;
 	Base_Unit(){}
 	~Base_Unit(){}
@@ -83,6 +94,44 @@ public:
 	}
 	void correctGeometry(){ 
 		m_geometry = { (int)(m_box_body->GetPosition().x - (m_width / 2)), (int)(m_box_body->GetPosition().y - (m_height / 2)), m_width, m_height }; 
+	}
+
+	void initAnimation(){
+		loadLeftAnimation();
+		loadRightAnimation();
+	}
+	
+	void loadLeftAnimation(){
+		left_Clips[0].x = 0;
+		left_Clips[0].y = 32;
+		left_Clips[0].w = 30;
+		left_Clips[0].h = 32;
+
+		left_Clips[1].x = 30;
+		left_Clips[1].y = 32;
+		left_Clips[1].w = 30;
+		left_Clips[1].h = 32;
+
+		left_Clips[2].x = 60;
+		left_Clips[2].y = 32;
+		left_Clips[2].w = 30;
+		left_Clips[2].h = 32;
+	}
+	void loadRightAnimation(){
+		right_Clips[0].x = 0;
+		right_Clips[0].y = 0;
+		right_Clips[0].w = 30;
+		right_Clips[0].h = 32;
+
+		right_Clips[1].x = 30;
+		right_Clips[1].y = 0;
+		right_Clips[1].w = 30;
+		right_Clips[1].h = 32;
+
+		right_Clips[2].x = 60;
+		right_Clips[2].y = 0;
+		right_Clips[2].w = 30;
+		right_Clips[2].h = 32;
 	}
 };
 
