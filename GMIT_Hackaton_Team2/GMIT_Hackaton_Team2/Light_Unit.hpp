@@ -54,7 +54,6 @@ public:
 			frame++;
 			frameCountdown = 0;
 		}
-
 		//Cycle animation
 		//if (frame / 3 >= WALKING_ANIMATION_FRAMES){
 		if (frame >= WALKING_ANIMATION_FRAMES) {

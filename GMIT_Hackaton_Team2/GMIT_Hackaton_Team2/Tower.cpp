@@ -1,14 +1,18 @@
 #include "stdafx.h"
 #include "Tower.h"
 
+
 Tower::Tower()
 {
 
 }
-Tower::Tower(b2World *world, SDL_Renderer *ren,int x, int y)
+Tower::Tower(b2World *world, SDL_Renderer *ren,int x, int y, string path)
 {
+
+	bool isTower;
 	//load sprite
-	sprite = SDL_LoadBMP("Assets/tower2.bmp");
+	sprite = SDL_LoadBMP(path.c_str());
+	//sprite2 = SDL_LoadBMP("Assets/tower1.bmp");
 	texture = SDL_CreateTextureFromSurface(ren,
 		sprite);
 	//set sprites position

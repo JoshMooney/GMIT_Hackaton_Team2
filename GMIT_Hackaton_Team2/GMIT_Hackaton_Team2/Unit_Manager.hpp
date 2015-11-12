@@ -18,9 +18,9 @@ public:
 	void addUnit(std::string type, bool dir, b2World *m_world, Renderer &renderer){
 		b2Vec2 start_position;
 		if(dir)
-			start_position = b2Vec2(50, 100);
+			start_position = b2Vec2(120, 390);
 		else
-			start_position = b2Vec2(910, 100);
+			start_position = b2Vec2(830, 390);
 			
 		
 		if(type == "Heavy")

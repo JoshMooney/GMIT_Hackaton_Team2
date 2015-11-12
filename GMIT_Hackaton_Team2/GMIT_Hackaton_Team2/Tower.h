@@ -4,13 +4,17 @@
 
 #include <SDL.h>
 #include "Box2D\Box2D\Box2D.h"
+#include <string>
+
+using namespace std;
+
 
 
 class Tower
 {
 public:
 	Tower();
-	Tower(b2World *world, SDL_Renderer *ren, int x, int y);
+	Tower(b2World *world, SDL_Renderer *ren, int x, int y, string path);
 	~Tower();
 	void Update();
 
@@ -23,6 +27,7 @@ public:
 	
 protected:
 	SDL_Surface *sprite;
+	//SDL_Surface *sprite2;
 	b2FixtureDef fixdef;
 	b2BodyDef bodyDef;
 	b2Body* body;

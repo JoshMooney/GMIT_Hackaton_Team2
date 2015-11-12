@@ -45,7 +45,8 @@ int main(){
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 	InputManager im;
-	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
+	Tower tower = Tower(m_world, renderer.getRender(), 0, 100, "Assets/tower2.bmp");
+	Tower tower2 = Tower(m_world, renderer.getRender(), 800, 100, "Assets/tower1.bmp");
 	Button b1;
 	Button b2;
 	Button b3;
@@ -120,6 +121,7 @@ int main(){
 		//Draw in here
 		main_platform.render(renderer);
 		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
+		renderer.DrawImage(&tower2.getSourceRect(), &tower2.getRect(), tower2.getTexture());
 		unit_manager.render(renderer);
 
 		//if () {}
