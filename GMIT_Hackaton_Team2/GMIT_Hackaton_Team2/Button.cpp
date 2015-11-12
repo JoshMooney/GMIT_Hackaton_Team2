@@ -10,8 +10,10 @@ void Button::Init(SDL_Rect pos, SDL_Renderer* gRenderer, std::string path) {
 }
 bool Button::IsClicked(int x, int y) {
 
-	if (rect.x + rect.w > x && rect.x < x && rect.y + rect.h > y && rect.y < y)
+	if (rect.x + rect.w > x && rect.x < x && rect.y + rect.h > y && rect.y < y && oldX != x && oldY != y)
 	{
+		oldX = x;
+		oldY = y;
 		return true;
 	}
 	else

@@ -12,6 +12,7 @@ using namespace std;
 #include "InputManager.h"
 #include "Unit_Manager.hpp"
 #include "Tower.h"
+#include "Button.h"
 
 /*
 Notes:
@@ -45,6 +46,10 @@ int main(){
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 	InputManager im;
 	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
+	Button b1;
+
+	SDL_Rect temp = { 10, 10, 150, 50 };
+	b1.Init(temp, renderer.getRender(), "enemy1button.png");
 
 	unit_manager.addUnit("Heavy", true, m_world, renderer);
 	unit_manager.addUnit("Heavy", false, m_world, renderer);
@@ -58,6 +63,12 @@ int main(){
 		unit_manager.update();
 		unit_manager.cullUnits(m_world);
 		im.update();
+
+		if (b1.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+		}
+
 		renderer.Begin();
 		//Draw in here
 		main_platform.render(renderer);
@@ -65,7 +76,7 @@ int main(){
 		unit_manager.render(renderer);
 
 		//if () {}
-
+		b1.Draw(renderer);
 		renderer.End();
 	}
 

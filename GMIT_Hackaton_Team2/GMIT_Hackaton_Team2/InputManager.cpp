@@ -137,14 +137,18 @@ void InputManager::update()
 			if (e.type == SDL_MOUSEBUTTONDOWN) {
 				//If the left mouse button was pressed 
 				if (e.button.button == SDL_BUTTON_LEFT) {
+					mouse_x = e.button.x;
+					mouse_y = e.button.y;
+					//std::cout << "Mouse Button 1 (left) is pressed. x = " << mouse_x << ", y = " << mouse_y << std::endl;
 					gameOutput[CLICK] = true;
+					
 				}
 			}
 			if (e.type == SDL_MOUSEBUTTONUP) {
 				//If the left mouse button was pressed 
 				if (e.button.button == SDL_BUTTON_LEFT) {
 					gameOutput[CLICK] = false;
-					cout << e.button.x, e.button.y;
+					//cout << e.button.x, e.button.y;
 				}
 			}
 
