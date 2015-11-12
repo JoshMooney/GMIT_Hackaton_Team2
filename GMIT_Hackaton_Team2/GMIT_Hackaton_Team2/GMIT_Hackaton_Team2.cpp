@@ -47,12 +47,29 @@ int main(){
 	InputManager im;
 	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
 	Button b1;
+	Button b2;
+	Button b3;
+
+	Button b4;
+	Button b5;
+	Button b6;
 
 	SDL_Rect temp = { 10, 10, 150, 50 };
-	b1.Init(temp, renderer.getRender(), "enemy1button.png");
+	b1.Init(temp, renderer.getRender(), "enemy2button.png");
+	temp = { 10, 70, 150, 50 };
+	b2.Init(temp, renderer.getRender(), "enemy1button.png");
+	temp = { 10, 130, 150, 50 };
+	b3.Init(temp, renderer.getRender(), "enemy3button.png");
 
-	unit_manager.addUnit("Heavy", true, m_world, renderer);
-	unit_manager.addUnit("Heavy", false, m_world, renderer);
+	temp = { 800, 10, 150, 50 };
+	b4.Init(temp, renderer.getRender(), "redenemy2.png");
+	temp = { 800, 70, 150, 50 };
+	b5.Init(temp, renderer.getRender(), "redenemy1.png");
+	temp = { 800, 130, 150, 50 };
+	b6.Init(temp, renderer.getRender(), "redenemy3.png");
+
+	//unit_manager.addUnit("Heavy", true, m_world, renderer);
+	//unit_manager.addUnit("Heavy", false, m_world, renderer);
 	
 
 	bool is_running = true;
@@ -67,6 +84,34 @@ int main(){
 		if (b1.IsClicked(im.getX(), im.getY()))
 		{
 			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Heavy", true, m_world, renderer);
+		}
+		if (b2.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Med", true, m_world, renderer);
+		}
+		if (b3.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Light", true, m_world, renderer);
+		}
+
+		//----------------
+		if (b4.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Heavy", false, m_world, renderer);
+		}
+		if (b5.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Med", false, m_world, renderer);
+		}
+		if (b6.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			unit_manager.addUnit("Light", false, m_world, renderer);
 		}
 
 		renderer.Begin();
@@ -77,6 +122,12 @@ int main(){
 
 		//if () {}
 		b1.Draw(renderer);
+		b2.Draw(renderer);
+		b3.Draw(renderer);
+
+		b4.Draw(renderer);
+		b5.Draw(renderer);
+		b6.Draw(renderer);
 		renderer.End();
 	}
 
