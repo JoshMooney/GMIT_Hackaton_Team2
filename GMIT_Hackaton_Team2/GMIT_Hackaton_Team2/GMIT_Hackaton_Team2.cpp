@@ -47,8 +47,8 @@ int main(){
 	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
 
 	unit_manager.addUnit("Heavy", true, m_world, renderer);
-	unit_manager.addUnit("Heavy", false, m_world, renderer);
-	
+	unit_manager.addUnit("Med", false, m_world, renderer);
+	unit_manager.addUnit("Light", true, m_world, renderer);
 
 	bool is_running = true;
 	while (is_running){
