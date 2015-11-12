@@ -6,6 +6,7 @@ using namespace std;
 #include <iostream>
 #include "Renderer.h"
 #include "InputManager.h"
+#include "Button.h"
 
 /*
 Notes:
@@ -30,14 +31,39 @@ int main(){
 	const int pos_iterations = 2;
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	Button b1;
 	InputManager im;
+	
+
+	SDL_Rect temp = { 10, 10, 150, 50 };
+	b1.Init(temp, renderer.getRender(), "enemy1button.png");
 
 	bool is_running = true;
 	while (is_running){
 		//Main Game loop here
+		
+		if (b1.IsClicked(im.getX(), im.getY()))
+		{
+			cout << "You clicked da button" << endl;
+			
+		}
 		im.update();
+
+
+	/*	if (get<CLICK>(gameKeys))
+		{
+			int mouseX;
+			int mouseY;
+			SDL_GetMouseState(&mouseX, &mouseY);
+
+			menu.CheckIfButtonPressed(mouseX, mouseY, &quit);
+		} */
+
+		
+
 		renderer.Begin();
+
+		b1.Draw(renderer);
 
 		renderer.End();
 	}

@@ -22,6 +22,8 @@ private:
 	SDL_Surface surf;
 	SDL_Texture* myTexture;
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer*);
+	int oldX = 0;
+	int oldY = 0;
 public:
 
 	Button();
