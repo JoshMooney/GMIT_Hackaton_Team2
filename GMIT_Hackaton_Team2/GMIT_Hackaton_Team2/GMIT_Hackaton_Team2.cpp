@@ -7,6 +7,8 @@ using namespace std;
 #include "Renderer.h"
 #include "Platform.h"
 #include "InputManager.h"
+#include "Tower.h"
+
 
 /*
 Notes:
@@ -36,7 +38,7 @@ int main(){
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
-
+	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
 	InputManager im;
 
 	bool is_running = true;
@@ -48,8 +50,7 @@ int main(){
 		renderer.Begin();
 		//Draw in here
 		main_platform.render(renderer);
-
-
+		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
 		//if () {}
 
 		renderer.End();
