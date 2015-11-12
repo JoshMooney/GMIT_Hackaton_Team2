@@ -8,6 +8,7 @@ using namespace std;
 #include "Platform.h"
 #include "Light_Unit.hpp"
 #include "Heavy_Unit.hpp"
+#include "Light_Unit.hpp"
 #include "InputManager.h"
 
 /*

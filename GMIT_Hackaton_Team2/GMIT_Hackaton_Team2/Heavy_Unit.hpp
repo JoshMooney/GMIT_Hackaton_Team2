@@ -4,11 +4,8 @@
 #include "stdafx.h"
 #include <Box2D\Box2D.h>
 #include "Base_Unit.hpp"
-#include <iostream>
-using namespace std;
 
 class Heavy_Unit : public Base_Unit {
-private:
 
 public:
 	Heavy_Unit(){
@@ -31,6 +28,9 @@ public:
 		m_box_body->GetFixtureList()->SetFriction(0.0f);
 		m_box_body->GetFixtureList()->SetRestitution(0.0f);
 
+		b2FixtureDef mFixtureDef;
+		mFixtureDef.userData = "Enemy";
+
 		m_attack = 30;
 		m_health = 20;
 		m_speed = .1f;
@@ -45,7 +45,6 @@ public:
 
 	void update(){
 		move();
-		std::cout << "Pos: X" << (int)(m_box_body->GetPosition().x) << ", Y " << (int)(m_box_body->GetPosition().y) << std::endl;
 		correctGeometry();
 	}
 	void render(Renderer& r){

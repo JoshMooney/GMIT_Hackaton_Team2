@@ -10,11 +10,11 @@ private:
 public:
 	Light_Unit();
 	Light_Unit(b2Vec2 pos, int w, int h, bool dir, b2World* wrd, Renderer &r) {
-		loadTexture("Assets/light.png", r.getRender());
+		m_texture = loadTexture("Assets/light.png", r.getRender());
 		//Define a b2body
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
-		bodyDef.position = b2Vec2(m_geometry.x, m_geometry.y);
+		bodyDef.position = b2Vec2(pos.x, pos.y);
 		bodyDef.userData = this;
 		//Ask the b2Worldto create our body
 		m_box_body = wrd->CreateBody(&bodyDef);
@@ -26,9 +26,9 @@ public:
 		m_box_body->GetFixtureList()->SetFriction(0.0f);
 		m_box_body->GetFixtureList()->SetRestitution(0.0f);
 
-		m_attack = 30;
-		m_health = 20;
-		m_speed = 10;
+		m_attack = 10;
+		m_health = 10;
+		m_speed = .3f;
 		m_is_moving = false;
 		m_is_fighting = false;
 		m_direction = dir;
@@ -36,10 +36,20 @@ public:
 	}
 	~Light_Unit();
 
-	void update();
-	void render(Renderer& r);
-	void onBeginContact(CollisionResponder* other);
-	void onEndContact(CollisionResponder* other);
+	void update(){
+		move();
+		correctGeometry();
+	}
+	void render(Renderer& r){
+		//SDL_RenderCopy(r.getRender(), m_texture, NULL, &m_geometry);
+		r.DrawImage(sizeRec, &m_geometry, m_texture);
+	}
+	void onBeginContact(CollisionResponder* other){
+
+	}
+	void onEndContact(CollisionResponder* other){
+
+	}
 };
 
 #endif

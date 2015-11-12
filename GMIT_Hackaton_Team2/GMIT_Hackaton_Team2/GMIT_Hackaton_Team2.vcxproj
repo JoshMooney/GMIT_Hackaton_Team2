@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Base_Unit.hpp" />
     <ClInclude Include="CollisionResponder.h" />
