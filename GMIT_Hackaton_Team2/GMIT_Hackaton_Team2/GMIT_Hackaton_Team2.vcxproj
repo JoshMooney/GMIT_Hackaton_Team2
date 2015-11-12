@@ -42,11 +42,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-<IncludePath>.\SDL\include;.\Box2D;$(IncludePath)</IncludePath>
+    <IncludePath>.\SDL\include;.\Box2D;$(IncludePath)</IncludePath>
     <LibraryPath>.\SDL\lib\x86;$(LibraryPath)</LibraryPath>
-<IncludePath>.\SDL\include;$(IncludePath);.\Box2D\;</IncludePath>
+    <IncludePath>.\SDL\include;$(IncludePath);.\Box2D\;</IncludePath>
     <LibraryPath>.\SDL\lib\x86;$(LibraryPath);.\Box2D\;</LibraryPath>
- </PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -99,6 +99,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="Turret.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />

@@ -43,6 +43,7 @@ int main(){
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
+	Tower towerTwo = Tower(m_world, renderer.getRender(), 760, 100);
 	InputManager im;
 
 
@@ -82,8 +83,10 @@ int main(){
 			}
 		}
 		renderer.Begin();
-		main_platform.render(renderer);
+		
 		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
+		renderer.DrawImage(&towerTwo.getSourceRect(), &towerTwo.getRect(), towerTwo.getTexture());
+		main_platform.render(renderer);
 		renderer.End();
 	}
 

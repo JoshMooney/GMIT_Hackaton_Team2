@@ -16,8 +16,8 @@ Tower::Tower(b2World *world, SDL_Renderer *ren,int x, int y)
 	spriteRect.y = y;
 	spriteRect.w = sprite->w;
 	spriteRect.h = sprite->h;
-	sourceRect.x = x;
-	sourceRect.y = y;
+	sourceRect.x = 0;
+	sourceRect.y = 0;
 	sourceRect.w = sprite->w;
 	sourceRect.h = sprite->h;
 	fixdef = b2FixtureDef();
@@ -27,7 +27,7 @@ Tower::Tower(b2World *world, SDL_Renderer *ren,int x, int y)
 	b2PolygonShape dynamicBox;
 	dynamicBox.SetAsBox(63.0f, 1.0f);
 	fixdef.shape = &dynamicBox;
-
+	m_health;
 	bodyDef = b2BodyDef();
 	bodyDef.type = b2_staticBody;
 

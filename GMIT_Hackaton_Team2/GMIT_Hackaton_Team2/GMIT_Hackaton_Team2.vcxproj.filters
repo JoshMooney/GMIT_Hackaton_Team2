@@ -9,7 +9,7 @@
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
-<ClInclude Include="Button.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Base_Unit.hpp" />
     <ClInclude Include="CollisionResponder.h" />
@@ -21,10 +21,11 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="Turret.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
- <Text Include="ReadMe.txt" />
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -53,5 +54,5 @@
     <ClCompile Include="Tower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-</ItemGroup>
+  </ItemGroup>
 </Project>
