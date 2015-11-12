@@ -6,6 +6,8 @@ using namespace std;
 #include <iostream>
 #include "Renderer.h"
 #include "Platform.h"
+#include "Light_Unit.hpp"
+#include "Heavy_Unit.hpp"
 #include "InputManager.h"
 
 /*
@@ -25,7 +27,7 @@ int main(){
 	}
 	const int SCREEN_WIDTH = 960;
 	const int SCREEN_HEIGHT = 640;
-	const b2Vec2 GRAVITY = b2Vec2(0, 9.81f);
+	const b2Vec2 GRAVITY = b2Vec2(0, 9.8f);
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
@@ -37,7 +39,10 @@ int main(){
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 
+	Heavy_Unit heavyUnit = Heavy_Unit(b2Vec2(100, 100), 40, 40, true, m_world, renderer);
 	InputManager im;
+
+	
 
 	bool is_running = true;
 	while (is_running){
@@ -45,9 +50,11 @@ int main(){
 		m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 
 		im.update();
+		heavyUnit.update();
 		renderer.Begin();
 		//Draw in here
 		main_platform.render(renderer);
+		heavyUnit.render(renderer);
 
 
 		//if () {}

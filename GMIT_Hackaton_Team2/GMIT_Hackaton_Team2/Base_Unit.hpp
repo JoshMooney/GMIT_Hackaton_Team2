@@ -7,29 +7,32 @@
 #include "Renderer.h"
 #include "CollisionResponder.h"
 
-class Base_Unit : public CollisionResponder {
+class Base_Unit {
 private:
-
+	const float box2D_timestep = 1.0f / 60.0f;
 public:
 	//Not ment to go here but for quick development purposes sure why not.
 	int m_attack;
 	int m_health;
 	float m_speed;
 	
-	bool m_direction;
+	bool m_direction; // 1 is looking right, 0 is looking left
 	bool m_is_moving;
 	bool m_is_fighting;
 	b2Body* m_box_body;
 	SDL_Rect m_geometry;
 
+	int m_width = 40;
+	int m_height = 40;
+
 	//The final texture
-	SDL_Texture* newTexture;
+	SDL_Texture* m_texture;
 	//Load image at specified path
 	SDL_Surface* loadedSurface;
 	SDL_Rect* currentClip;
-
-	Base_Unit();
-	~Base_Unit();
+	SDL_Rect* sizeRec;
+	Base_Unit(){}
+	~Base_Unit(){}
 
 	virtual void update() = 0;
 	virtual void render(Renderer& r) = 0;
@@ -37,9 +40,9 @@ public:
 	virtual void onEndContact(CollisionResponder* other) = 0;
 	
 	void setTexture(SDL_Renderer* gRenderer){
-		std::string path = "Assets/player.png";
+		//std::string path = "Assets/heavy.png";
 
-		myTexture = loadTexture(path, gRenderer);
+		//m_texture = loadTexture(path, gRenderer);
 	}
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer)	{
 		loadedSurface = IMG_Load(path.c_str());
@@ -49,8 +52,12 @@ public:
 		}
 		else{
 			//Create texture from surface pixels
-			newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-			if (newTexture == NULL)	{
+			m_texture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+
+			SDL_Rect tempRect;
+			sizeRec = new SDL_Rect{0, 0, loadedSurface->w, loadedSurface->h };
+			
+			if (m_texture == NULL)	{
 				printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 			}
 
@@ -58,12 +65,22 @@ public:
 			SDL_FreeSurface(loadedSurface);
 
 		}//must return something
-		return newTexture;
+		return m_texture;
 	}
 	void move(){
-
+		b2Vec2 pos = b2Vec2(m_box_body->GetPosition().x, m_box_body->GetPosition().y);
+		if (m_direction){
+			m_box_body->SetLinearVelocity(b2Vec2(m_box_body->GetLinearVelocity().x + (m_speed * box2D_timestep), m_box_body->GetLinearVelocity().y));
+		}
+		else{
+			m_box_body->SetLinearVelocity(b2Vec2(m_box_body->GetLinearVelocity().x - (m_speed * box2D_timestep), m_box_body->GetLinearVelocity().y));
+		}
 	}
-}
+	void correctGeometry(){ 
+		m_geometry = { (int)(m_box_body->GetPosition().x - (m_width / 2)), (int)(m_box_body->GetPosition().y - (m_height / 2)), m_width, m_height }; 
+	}
+};
+
 
 #endif
 
