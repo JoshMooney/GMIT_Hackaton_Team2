@@ -71,8 +71,8 @@ int main(){
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 	InputManager im;
-	Tower tower = Tower(m_world, renderer.getRender(), 0, 100, "Assets/tower2.bmp");
-	Tower tower2 = Tower(m_world, renderer.getRender(), 800, 100, "Assets/tower1.bmp");
+	Tower tower = Tower(m_world, renderer.getRender(), 0, 100, "Assets/tower2.png ");
+	Tower tower2 = Tower(m_world, renderer.getRender(), 800, 100, "Assets/tower1.png");
 	Button b1;
 	Button b2;
 	Button b3;
@@ -82,22 +82,24 @@ int main(){
 	Button b6;
 
 	SDL_Texture* backgroundTexture;
+	SDL_Texture* grassTexture;
 
-	SDL_Rect temp = { 10, 10, 150, 50 };
+	SDL_Rect temp = { 160, 10, 150, 50 };
 	b1.Init(temp, renderer.getRender(), "enemy2button.png");
-	temp = { 10, 70, 150, 50 };
+	temp = { 160, 70, 150, 50 };
 	b2.Init(temp, renderer.getRender(), "enemy1button.png");
-	temp = { 10, 130, 150, 50 };
+	temp = { 160, 130, 150, 50 };
 	b3.Init(temp, renderer.getRender(), "enemy3button.png");
 
-	temp = { 800, 10, 150, 50 };
+	temp = { 640, 10, 150, 50 };
 	b4.Init(temp, renderer.getRender(), "redenemy2.png");
-	temp = { 800, 70, 150, 50 };
+	temp = { 640, 70, 150, 50 };
 	b5.Init(temp, renderer.getRender(), "redenemy1.png");
-	temp = { 800, 130, 150, 50 };
+	temp = { 640, 130, 150, 50 };
 	b6.Init(temp, renderer.getRender(), "redenemy3.png");
 
 	backgroundTexture = loadTexture("background.png", renderer.getRender());
+	grassTexture = loadTexture("grass.png", renderer.getRender());
 
 //unit_manager.addUnit("Heavy", true, m_world, renderer);
 	//unit_manager.addUnit("Heavy", false, m_world, renderer);
@@ -151,6 +153,8 @@ int main(){
 		//Draw in here
 		renderer.DrawImage(0, 0, backgroundTexture);
 		main_platform.render(renderer);
+		temp = { 0, 600, 960, 40 };
+		renderer.DrawImage(0, &temp, grassTexture);
 		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
 		renderer.DrawImage(&tower2.getSourceRect(), &tower2.getRect(), tower2.getTexture());
 		unit_manager.render(renderer);

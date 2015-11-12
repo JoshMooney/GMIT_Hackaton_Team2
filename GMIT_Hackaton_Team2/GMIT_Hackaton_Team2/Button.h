@@ -24,6 +24,8 @@ private:
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer*);
 	int oldX = 0;
 	int oldY = 0;
+	int timer = 0;
+	bool clicked = false;
 public:
 
 	Button();

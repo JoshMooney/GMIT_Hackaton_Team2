@@ -5,6 +5,7 @@
 #include <Box2D/Box2D.h>
 #include <SDL.h>
 #include "Renderer.h"
+#include "SDL\include\SDL_image.h"
 
 class Platform{
 private:
@@ -30,6 +31,8 @@ public:
 		geometry.y = platformBody->GetPosition().y - ((float32)height * 0.5f);
 		geometry.h = (float32)height;
 		geometry.w = (float32)width;
+
+		
 	}
 	~Platform(){
 
