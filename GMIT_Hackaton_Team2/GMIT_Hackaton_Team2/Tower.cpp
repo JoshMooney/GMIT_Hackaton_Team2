@@ -8,14 +8,14 @@ Tower::Tower()
 Tower::Tower(b2World *world, SDL_Renderer *ren,int x, int y)
 {
 	//load sprite
-	sprite = SDL_LoadBMP("Assets/Images/tower.bmp");
+	sprite = SDL_LoadBMP("Assets/tower2.bmp");
 	texture = SDL_CreateTextureFromSurface(ren,
 		sprite);
 	//set sprites position
 	spriteRect.x = x;
 	spriteRect.y = y;
-	spriteRect.w = sprite->w;
-	spriteRect.h = sprite->h;
+	spriteRect.w = 150;
+	spriteRect.h = 500;
 	sourceRect.x = 0;
 	sourceRect.y = 0;
 	sourceRect.w = sprite->w;

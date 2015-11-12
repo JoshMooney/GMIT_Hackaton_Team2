@@ -6,6 +6,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
@@ -21,6 +22,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="Unit_Manager.hpp" />
+    <ClInclude Include="Tower.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

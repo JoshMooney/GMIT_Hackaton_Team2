@@ -11,6 +11,7 @@ using namespace std;
 #include "Light_Unit.hpp"
 #include "InputManager.h"
 #include "Unit_Manager.hpp"
+#include "Tower.h"
 
 /*
 Notes:
@@ -43,6 +44,7 @@ int main(){
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
 	InputManager im;
+	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
 
 	unit_manager.addUnit("Heavy", true, m_world, renderer);
 	unit_manager.addUnit("Heavy", false, m_world, renderer);
@@ -59,6 +61,7 @@ int main(){
 		renderer.Begin();
 		//Draw in here
 		main_platform.render(renderer);
+		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
 		unit_manager.render(renderer);
 
 		//if () {}
