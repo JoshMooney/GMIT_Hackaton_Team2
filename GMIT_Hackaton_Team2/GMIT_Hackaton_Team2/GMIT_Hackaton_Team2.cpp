@@ -23,6 +23,33 @@ eg.
 ResourceManager<sf::Texture>::instance()->("Assets/Stuff/file.png")
 */
 
+
+SDL_Texture* loadTexture(std::string path, SDL_Renderer* gRenderer) {
+	//The final texture
+	SDL_Texture* newTexture = NULL;
+
+	//Load image at specified path
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	if (loadedSurface == NULL) {
+		printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
+	}
+	else
+	{
+		//Create texture from surface pixels
+		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+		if (newTexture == NULL)
+		{
+			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
+		}
+
+
+		//Get rid of old loaded surface
+		SDL_FreeSurface(loadedSurface);
+	}
+
+	return newTexture;
+}
+
 int main(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
@@ -40,7 +67,6 @@ int main(){
 	m_world = new b2World(GRAVITY);
 
 	Unit_Manager unit_manager = Unit_Manager();
-	
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
@@ -54,6 +80,8 @@ int main(){
 	Button b4;
 	Button b5;
 	Button b6;
+
+	SDL_Texture* backgroundTexture;
 
 	SDL_Rect temp = { 10, 10, 150, 50 };
 	b1.Init(temp, renderer.getRender(), "enemy2button.png");
@@ -69,12 +97,14 @@ int main(){
 	temp = { 800, 130, 150, 50 };
 	b6.Init(temp, renderer.getRender(), "redenemy3.png");
 
+	backgroundTexture = loadTexture("background.png", renderer.getRender());
+
 //unit_manager.addUnit("Heavy", true, m_world, renderer);
 	//unit_manager.addUnit("Heavy", false, m_world, renderer);
 	
-	unit_manager.addUnit("Heavy", true, m_world, renderer);
-	unit_manager.addUnit("Med", false, m_world, renderer);
-	unit_manager.addUnit("Light", true, m_world, renderer);
+	//unit_manager.addUnit("Heavy", true, m_world, renderer);
+	//unit_manager.addUnit("Med", false, m_world, renderer);
+	//unit_manager.addUnit("Light", true, m_world, renderer);
 	bool is_running = true;
 	while (is_running){
 		//Main Game loop here
@@ -119,6 +149,7 @@ int main(){
 
 		renderer.Begin();
 		//Draw in here
+		renderer.DrawImage(0, 0, backgroundTexture);
 		main_platform.render(renderer);
 		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
 		renderer.DrawImage(&tower2.getSourceRect(), &tower2.getRect(), tower2.getTexture());
