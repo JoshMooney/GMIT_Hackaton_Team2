@@ -18,19 +18,36 @@ public:
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position = b2Vec2(pos.x, pos.y);
 		bodyDef.userData = this;
+		m_active = true;
 		//Ask the b2Worldto create our body
 		m_box_body = wrd->CreateBody(&bodyDef);
 
+		m_geometry = { (int)(m_box_body->GetPosition().x - (w / 2)), (int)(m_box_body->GetPosition().y - (h / 2)), w, h };
+		
 		//Define the shape of the body
 		b2PolygonShape shape;
 		shape.SetAsBox(m_geometry.w * 0.5f, m_geometry.h * 0.5f);
 		m_box_body->CreateFixture(&shape, 0.0f);
 		m_box_body->GetFixtureList()->SetFriction(0.0f);
 		m_box_body->GetFixtureList()->SetRestitution(0.0f);
-
+		/*
+		//Define the shape of the body
+		b2PolygonShape l_shape;
+		l_shape.SetAsBox(m_geometry.w * 0.5f, m_geometry.h * 0.5f);
 		b2FixtureDef mFixtureDef;
 		mFixtureDef.userData = "Enemy";
+		mFixtureDef.shape = &l_shape;
+		mFixtureDef.density = 1.0f;
+		mFixtureDef.friction = 0.0f;
+		mFixtureDef.restitution = 0.0f;
 
+		b2PolygonShape shape;
+		shape.SetAsBox(m_geometry.w * 0.5f, m_geometry.h * 0.5f);
+		m_box_body->CreateFixture(&shape, 0.0f);
+
+		m_box_body->CreateFixture(&mFixtureDef);
+		//m_box_body->SetFixedRotation(true);
+		*/
 		m_attack = 30;
 		m_health = 20;
 		m_speed = .1f;

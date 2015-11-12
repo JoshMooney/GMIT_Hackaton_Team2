@@ -10,6 +10,7 @@ using namespace std;
 #include "Heavy_Unit.hpp"
 #include "Light_Unit.hpp"
 #include "InputManager.h"
+#include "Unit_Manager.hpp"
 
 /*
 Notes:
@@ -36,13 +37,15 @@ int main(){
 	b2World* m_world;
 	m_world = new b2World(GRAVITY);
 
+	Unit_Manager unit_manager = Unit_Manager();
+	
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	Renderer renderer = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Platform main_platform = Platform(b2Vec2(0, 600), 960, 40, m_world);
-
-	Heavy_Unit heavyUnit = Heavy_Unit(b2Vec2(100, 100), 40, 40, true, m_world, renderer);
 	InputManager im;
 
+	unit_manager.addUnit("Heavy", true, m_world, renderer);
+	unit_manager.addUnit("Heavy", false, m_world, renderer);
 	
 
 	bool is_running = true;
@@ -50,13 +53,13 @@ int main(){
 		//Main Game loop here
 		m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 
+		unit_manager.update();
+		unit_manager.cullUnits(m_world);
 		im.update();
-		heavyUnit.update();
 		renderer.Begin();
 		//Draw in here
 		main_platform.render(renderer);
-		heavyUnit.render(renderer);
-
+		unit_manager.render(renderer);
 
 		//if () {}
 

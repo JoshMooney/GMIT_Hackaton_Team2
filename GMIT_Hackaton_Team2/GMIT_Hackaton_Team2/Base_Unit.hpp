@@ -12,6 +12,7 @@ private:
 	const float box2D_timestep = 1.0f / 60.0f;
 public:
 	//Not ment to go here but for quick development purposes sure why not.
+	bool m_active;
 	int m_attack;
 	int m_health;
 	float m_speed;
@@ -39,6 +40,10 @@ public:
 	virtual void onBeginContact(CollisionResponder* other) = 0;
 	virtual void onEndContact(CollisionResponder* other) = 0;
 	
+	void attack();
+	void die(){
+		m_active = false;
+	}
 	void setTexture(SDL_Renderer* gRenderer){
 		//std::string path = "Assets/heavy.png";
 
@@ -81,5 +86,5 @@ public:
 	}
 };
 
-#endif
 
+#endif

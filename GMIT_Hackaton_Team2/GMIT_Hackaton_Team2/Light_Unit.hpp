@@ -14,10 +14,13 @@ public:
 		//Define a b2body
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
+		m_active = true;
 		bodyDef.position = b2Vec2(pos.x, pos.y);
 		bodyDef.userData = this;
 		//Ask the b2Worldto create our body
 		m_box_body = wrd->CreateBody(&bodyDef);
+
+		m_geometry = { (int)(m_box_body->GetPosition().x - (w / 2)), (int)(m_box_body->GetPosition().y - (h / 2)), w, h };
 
 		//Define the shape of the body
 		b2PolygonShape shape;
@@ -32,7 +35,6 @@ public:
 		m_is_moving = false;
 		m_is_fighting = false;
 		m_direction = dir;
-		m_geometry = { (int)(m_box_body->GetPosition().x - (w / 2)), (int)(m_box_body->GetPosition().y - (h / 2)), w, h };
 	}
 	~Light_Unit();
 
