@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include <SDL.h>
 #undef main 
-#include "Box2D\Box2D.h"
+#include "Box2D\Box2D\Box2D.h"
+
 using namespace std;
 #include <iostream>
 #include "Renderer.h"
+
 #include "Platform.h"
 #include "InputManager.h"
 #include "Tower.h"
@@ -18,6 +20,8 @@ ResourceManager<DataTypeHere>::instance()->("Path");
 eg.
 ResourceManager<sf::Texture>::instance()->("Assets/Stuff/file.png")
 */
+
+
 
 int main(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -41,18 +45,45 @@ int main(){
 	Tower tower = Tower(m_world, renderer.getRender(), 100, 100);
 	InputManager im;
 
+
+
 	bool is_running = true;
 	while (is_running){
+		SDL_Event e;
 		//Main Game loop here
+
 		m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 
 		im.update();
+
+
+		while (SDL_PollEvent(&e) != 0)
+		{
+
+
+			//User requests quit
+			if (e.type == SDL_QUIT) //user presses close button on window
+			{
+				is_running = false;
+			}
+			//User presses a key
+			else if (e.type == SDL_KEYDOWN)
+			{
+				switch (e.key.keysym.sym)
+				{
+				case SDLK_ESCAPE:
+					is_running = false;
+					break;
+				default:
+					break;
+				}
+
+
+			}
+		}
 		renderer.Begin();
-		//Draw in here
 		main_platform.render(renderer);
 		renderer.DrawImage(&tower.getSourceRect(), &tower.getRect(), tower.getTexture());
-		//if () {}
-
 		renderer.End();
 	}
 
